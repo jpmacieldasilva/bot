@@ -1,5 +1,8 @@
 import telebot
 import random
+import schedule
+import time
+
 
 # Cria o objeto bot com o token do seu bot
 bot = telebot.TeleBot('6269301575:AAHWDMBiM-b3vH0P0v21sSoacfJyZTfU1Wg')
@@ -44,8 +47,11 @@ def recebe_palavra(message):
 ultima_pessoa_sorteada = None
 
 # Handler para sortear uma palavra aleatória da lista
+
+
 @bot.message_handler(commands=['sortear'])
 def sortear_palavra(message):
+    bot.reply_to(message, "Vai começar o sorteio")
     # Verifica se a lista de palavras não está vazia
     if len(participantes) > 0:
         global ultima_pessoa_sorteada
@@ -57,13 +63,33 @@ def sortear_palavra(message):
 
         # Armazena a última pessoa sorteada
         ultima_pessoa_sorteada = pessoa_sorteada
-            # Envia a palavra sorteada ao usuário
+        # Envia a palavra sorteada ao usuário
         bot.reply_to(
-                message, f"A música de hoje é do/da {pessoa_sorteada}")
+            message, f"A música de hoje é do/da {pessoa_sorteada}")
     else:
         # Se a lista de palavras estiver vazia, envia uma mensagem de erro ao usuário
         bot.reply_to(message, "Não há participantes na lista!")
 
 
+@bot.message_handler(commands=['lista'])
+def lista_participantes(message):
+    # Verifica se a lista de participantes não está vazia
+    if len(participantes) > 0:
+        # Concatena todos os participantes em uma única string separada por vírgulas
+        lista = ', '.join(participantes)
+        # Envia a lista de participantes ao usuário
+        bot.reply_to(message, f"Participantes na lista: {lista}")
+    else:
+        # Se a lista de participantes estiver vazia, envia uma mensagem de erro ao usuário
+        bot.reply_to(message, "Não há participantes na lista!")
+
+
 # Inicia o bot
 bot.polling()
+
+schedule.every().day.at("11:59").do(sortear_palavra)
+schedule.every().day.at("20:00").do(sortear_palavra)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
