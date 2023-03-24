@@ -1,8 +1,5 @@
 import telebot
 import random
-import schedule
-import time
-
 
 # Cria o objeto bot com o token do seu bot
 bot = telebot.TeleBot('6269301575:AAHWDMBiM-b3vH0P0v21sSoacfJyZTfU1Wg')
@@ -42,8 +39,6 @@ def recebe_palavra(message):
         bot.reply_to(message, f"Removido")
     else:
         bot.reply_to(message, f"Não está na lista!")
-
-# Handler para sortear uma palavra aleatória da lista
 
 
 # Variável para armazenar a última pessoa sorteada
