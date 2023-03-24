@@ -1,5 +1,10 @@
 import telebot
+import http.server
+import socketserver
 import random
+
+# Define a porta em que o servidor será executado
+PORT = 8080
 
 # Cria o objeto bot com o token do seu bot
 bot = telebot.TeleBot('6269301575:AAHWDMBiM-b3vH0P0v21sSoacfJyZTfU1Wg')
