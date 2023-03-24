@@ -7,7 +7,7 @@ import random
 PORT = 8080
 
 # Cria o objeto bot com o token do seu bot
-bot = telebot.TeleBot('6269301575:AAHWDMBiM-b3vH0P0v21sSoacfJyZTfU1Wg')
+bot = telebot.TeleBot('6220955965:AAEcc-0-Au9uUcwxwDrV8oGd2ZBjBlFZ5ws')
 
 # Lista para armazenar as palavras
 participantes = ['Vinicius', 'Daniel', '@tauancarvalho', '@filhudi', '@jpdasilva', '@rerecarvalho',
