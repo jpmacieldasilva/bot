@@ -8,7 +8,8 @@ import time
 bot = telebot.TeleBot('6269301575:AAHWDMBiM-b3vH0P0v21sSoacfJyZTfU1Wg')
 
 # Lista para armazenar as palavras
-participantes = []
+participantes = ['Vinicius', 'Daniel', '@tauancarvalho', '@filhudi', '@jpdasilva', '@rerecarvalho',
+                 '@matheusffo', 'Doug', '@Pudonz', '@feliipz', 'Maya', 'Luvs', 'Biscoito', '@newGusenge']
 
 # Handler para receber as mensagens do usuário
 
@@ -18,7 +19,9 @@ def recebe_palavra(message):
     # Obtém a palavra do usuário
     participante = message.text[12:]
 
-    if participante in participantes:
+    if not participante:
+        bot.reply_to(message, "Por favor, informe um nome válido.")
+    elif participante in participantes:
         bot.reply_to(message, f"Já está na lista!")
     else:
         # Adiciona a palavra à lista
@@ -68,7 +71,7 @@ def sortear_palavra(message):
             message, f"A música de hoje é do/da {pessoa_sorteada}")
     else:
         # Se a lista de palavras estiver vazia, envia uma mensagem de erro ao usuário
-        bot.reply_to(message, "Não há participantes na lista!")
+        bot.reply_to(message, "Sorteio já realizado hoje")
 
 
 @bot.message_handler(commands=['lista'])
@@ -86,10 +89,3 @@ def lista_participantes(message):
 
 # Inicia o bot
 bot.polling()
-
-schedule.every().day.at("11:59").do(sortear_palavra)
-schedule.every().day.at("20:00").do(sortear_palavra)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
