@@ -1,17 +1,13 @@
 import telebot
-import http.server
-import socketserver
 import random
 
-# Define a porta em que o servidor será executado
-PORT = 8080
 
 # Cria o objeto bot com o token do seu bot
-bot = telebot.TeleBot('6220955965:AAEcc-0-Au9uUcwxwDrV8oGd2ZBjBlFZ5ws')
+bot = telebot.TeleBot('6269301575:AAHWDMBiM-b3vH0P0v21sSoacfJyZTfU1Wg')
 
 # Lista para armazenar as palavras
 participantes = ['Vinicius', 'Daniel', '@tauancarvalho', '@filhudi', '@jpdasilva', '@rerecarvalho',
-                 '@matheusffo', 'Doug', '@Pudonz', '@feliipz', 'Maya', 'Luvs', 'Biscoito', '@newGusenge']
+                 '@matheusffo', 'Doug', '@Pudonz', '@feliipz', 'Maya', 'Luvs', 'Biscoito', '@newGusenge', '@marceviche']
 
 # Handler para receber as mensagens do usuário
 
@@ -88,4 +84,4 @@ def lista_participantes(message):
 
 
 # Inicia o bot
-bot.polling()
+bot.polling(interval=360)
